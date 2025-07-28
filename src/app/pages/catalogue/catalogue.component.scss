@@ -1,0 +1,260 @@
+@import '../../../styles.scss';
+
+// Define these for use in component
+$pdf-primary: #fcbe00;
+$pdf-primary-light: #fdd033;
+$pdf-primary-dark: #fc9e00;
+$pdf-secondary: #0db42a;
+$pdf-secondary-light: #3dc54d;
+$pdf-neutral-lightest: #f5f5f6; 
+
+// Main wrapper
+.catalogue-wrapper {
+  width: 100%;
+  overflow-x: hidden;
+  margin-top: 6rem;
+}
+
+// Common container style
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+// PDF section
+.pdf-section {
+  padding: 80px 0;
+  
+  .catalogue-highlights {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 30px;
+    border-left: 4px solid $primary;
+    
+    h3 {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      color: #333;
+    }
+    
+    .highlights-list {
+      list-style-type: none;
+      padding-left: 0;
+      
+      li {
+        position: relative;
+        padding-left: 25px;
+        margin-bottom: 12px;
+        line-height: 1.5;
+        
+        &:before {
+          content: '✓';
+          position: absolute;
+          left: 0;
+          color: $primary;
+          font-weight: bold;
+        }
+        
+        strong {
+          color: $primary-dark;
+        }
+      }
+    }
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .section-description {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  .pdf-container {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    margin-bottom: 40px;
+    background: #f8f9fa;
+    padding: 20px;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(to right, #fcbe00, #fdd033);
+    }
+    
+    ::ng-deep {
+      // Toolbar styling to match your theme
+      .toolbar {
+        background: linear-gradient(to right, #f8f9fa, #e9ecef) !important;
+        border-bottom: 1px solid #dee2e6 !important;
+      }
+      
+      // Button hover states
+      .toolbarButton {
+        &:hover {
+          background-color: rgba(252, 190, 0, 0.1) !important;
+        }
+        
+        &.toggled {
+          background-color: rgba(252, 190, 0, 0.2) !important;
+        }
+      }
+      
+      // Active elements
+      .splitToolbarButton.toggled > .toolbarButton.toggled,
+      .toolbarButton.toggled {
+        background-color: rgba(252, 190, 0, 0.2) !important;
+      }
+      
+      // Book-like styling
+      .pdfViewer {
+        .page {
+          border: 1px solid #dee2e6;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+          background-color: white;
+          margin: 10px auto;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          
+          &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(252, 190, 0, 0.2);
+          }
+        }
+        
+        // Page transitions
+        .spread {
+          transition: all 0.5s ease;
+        }
+      }
+      
+      // Custom focus styles
+      .toolbarButton:focus,
+      .secondaryToolbarButton:focus {
+        outline: 2px solid rgba(252, 190, 0, 0.5) !important;
+      }
+      
+      // Custom scrollbar for sidebar
+      .sidebarContentItems::-webkit-scrollbar {
+        width: 8px;
+      }
+      
+      .sidebarContentItems::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      
+      .sidebarContentItems::-webkit-scrollbar-thumb {
+        background: #fcbe00;
+        border-radius: 4px;
+      }
+      
+      // Sidebar styling
+      #sidebarContainer {
+        background: #f8f9fa !important;
+        border-right: 1px solid #dee2e6 !important;
+      }
+      
+      // Page navigation buttons
+      .toolbarButton.pageUp::before,
+      .toolbarButton.pageDown::before {
+        font-weight: bold;
+      }
+      
+      // Enhance page flip animation
+      .page.animating {
+        transition: transform 0.5s ease-in-out;
+      }
+      
+      // Current page highlight
+      .outlineItem.currentOutlineItem {
+        color: #fcbe00 !important;
+        font-weight: bold;
+      }
+      
+      // Search highlight color
+      .highlight {
+        background-color: rgba(252, 190, 0, 0.3) !important;
+      }
+      
+      // Page number input
+      #pageNumber {
+        border: 1px solid #dee2e6 !important;
+        
+        &:focus {
+          border-color: #fcbe00 !important;
+          box-shadow: 0 0 0 2px rgba(252, 190, 0, 0.25) !important;
+        }
+      }
+      
+      // Book binding effect
+      .spreadView .page:nth-child(odd) {
+        box-shadow: -5px 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      
+      .spreadView .page:nth-child(even) {
+        box-shadow: 5px 4px 8px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+  
+  // Book spine effect with green secondary accent
+  .pdf-container::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to right, 
+      rgba(0, 0, 0, 0.1) 0%, 
+      rgba(13, 180, 42, 0.2) 50%,
+      rgba(0, 0, 0, 0.1) 100%);
+    z-index: 10;
+    transform: translateX(-50%);
+    opacity: 0.7;
+  }
+  
+  .download-cta {
+    text-align: center;
+    margin-top: 30px;
+    
+    p {
+      margin-bottom: 15px;
+      color: #666;
+    }
+    
+    .download-btn {
+      display: inline-block;
+      background-color: #fcbe00;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: #0db42a;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+}

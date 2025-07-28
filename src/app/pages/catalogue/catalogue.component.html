@@ -1,0 +1,35 @@
+
+  <!-- PDF Viewer Section -->
+  <section class="pdf-section">
+    <div class="container">
+      
+      <div class="pdf-container" data-aos="fade-up" data-aos-delay="200">
+        <ngx-extended-pdf-viewer 
+          #pdfViewer
+          [src]="pdfSrc"
+          [useBrowserLocale]="true"
+          [showToolbar]="true"
+          [pageViewMode]="'book'"
+          [spread]="'even'"
+          [height]="'800px'"
+          [zoom]="'page-fit'"
+          [scrollMode]="0"
+          [backgroundColor]="'#f5f5f6'"
+          [showSidebarButton]="true"
+          [showFindButton]="true"
+          [showPagingButtons]="true"
+          [showZoomButtons]="true"
+          [showPresentationModeButton]="true"
+          [showOpenFileButton]="false"
+          [showPrintButton]="true"
+          [showDownloadButton]="true"
+          [showSecondaryToolbarButton]="true"
+          [showRotateButton]="true"
+          [showHandToolButton]="true"
+          [delayFirstView]="1000"
+          (pageChange)="onPageChange($event)">
+        </ngx-extended-pdf-viewer>
+      </div>
+
+    </div>
+  </section>
